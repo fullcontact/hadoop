@@ -37,8 +37,7 @@ import com.amazonaws.AmazonServiceException;
 import com.amazonaws.ClientConfiguration;
 import com.amazonaws.Protocol;
 import com.amazonaws.auth.AWSCredentialsProviderChain;
-
-import com.amazonaws.auth.InstanceProfileCredentialsProvider;
+import com.amazonaws.auth.DefaultAWSCredentialsProviderChain;
 import com.amazonaws.services.s3.AmazonS3Client;
 import com.amazonaws.services.s3.model.CannedAccessControlList;
 import com.amazonaws.services.s3.model.DeleteObjectsRequest;
@@ -173,7 +172,7 @@ public class S3AFileSystem extends FileSystem {
 
     AWSCredentialsProviderChain credentials = new AWSCredentialsProviderChain(
         new BasicAWSCredentialsProvider(accessKey, secretKey),
-        new InstanceProfileCredentialsProvider(),
+        new DefaultAWSCredentialsProviderChain(), 
         new AnonymousAWSCredentialsProvider()
     );
 
