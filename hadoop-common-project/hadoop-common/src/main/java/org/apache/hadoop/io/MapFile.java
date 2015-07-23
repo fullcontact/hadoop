@@ -553,10 +553,10 @@ public class MapFile {
     }
 
     /** Positions the reader at the named key, or if none such exists, at the
-     * first entry after the named key.  Returns true iff the named key exists
+     * first entry after the named key.  Returns true if the named key exists
      * in this map.
      */
-    public synchronized boolean seek(WritableComparable key) throws IOException {
+    public boolean seek(WritableComparable key) throws IOException {
       return seekInternal(key) == 0;
     }
 
@@ -568,7 +568,7 @@ public class MapFile {
      *          < 0 - positioned at next record
      *          1   - no more records in file
      */
-    private synchronized int seekInternal(WritableComparable key)
+    private int seekInternal(WritableComparable key)
       throws IOException {
       return seekInternal(key, false);
     }
@@ -692,7 +692,7 @@ public class MapFile {
 -     * @param val       - data value if key is found
 -     * @return          - the key that was the closest match or null if eof.
      */
-    public synchronized WritableComparable getClosest(WritableComparable key,
+    public WritableComparable getClosest(WritableComparable key,
       Writable val)
     throws IOException {
       return getClosest(key, val, false);
